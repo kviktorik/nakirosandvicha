@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>KiWi'S – Меню</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+    :root {
+      --olive: #5a6b2f;
+      --olive-dark: #3d4a1f;
+      --cream: #f5f0e1;
+      --cream-light: #faf7ef;
+      --text: #2c2c2c;
+      --card-bg: #ffffff;
+      --shadow: 0 8px 30px rgba(90, 107, 47, 0.12);
+
+      /* Fluid scaling */
+      --base-padding: clamp(0.8rem, 2vw, 2.5rem);
+      --card-padding: clamp(1rem, 2.2vw, 2rem);
+      --section-gap: clamp(1rem, 2.5vw, 2.2rem);
+      --logo-circle: clamp(48px, 7vw, 90px);
+      --title-size: clamp(1.6rem, 4.5vw, 3.2rem);
+      --section-title: clamp(0.95rem, 1.8vw, 1.35rem);
+      --item-name: clamp(0.85rem, 1.5vw, 1.15rem);
+      --item-desc: clamp(0.72rem, 1.2vw, 0.95rem);
+      --price-size: clamp(0.88rem, 1.5vw, 1.2rem);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(160deg, #f5f0e1 0%, #e8e0c8 50%, #d9d0b0 100%);
+      color: var(--text);
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.45;
+    }
+
+    /* ===== Header ===== */
+    header {
+      background: var(--olive);
+      padding: clamp(0.7rem, 1.8vw, 1.4rem) var(--base-padding);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.8rem, 2vw, 1.8rem);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    /* Logo group that floats from the side into the center */
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.8rem, 2vw, 1.8rem);
+      animation: floatIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes floatIn {
+      0% {
+        opacity: 0;
+        transform: translateX(-80vw);
+      }
+      60% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .logo-circle {
+      width: var(--logo-circle);
+      height: var(--logo-circle);
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--cream);
+      background: var(--cream);
+      flex-shrink: 0;
+    }
+
+    .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-wordmark {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+      letter-spacing: 0.04em;
+      color: #f5f0e1;
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      text-align: center;
+      padding: clamp(1.5rem, 3.5vw, 3rem) var(--base-padding) clamp(1rem, 2.5vw, 2rem);
+    }
+
+    .hero h1 {
+      font-size: var(--title-size);
+      color: var(--olive-dark);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== Menu Grid ===== */
+    .menu-container {
+      max-width: min(1400px, 96vw);
+      margin: 0 auto;
+      padding: 0 var(--base-padding) clamp(2.5rem, 5vw, 5rem);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: var(--section-gap);
+    }
+
+    .menu-section {
+      background: var(--card-bg);
+      border-radius: clamp(12px, 2vw, 20px);
+      padding: var(--card-padding);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(90, 107, 47, 0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .menu-section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(90, 107, 47, 0.18);
+    }
+
+    .menu-section h2 {
+      font-size: var(--section-title);
+      font-weight: 700;
+      color: var(--olive);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: clamp(0.7rem, 1.5vw, 1.2rem);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(90, 107, 47, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .menu-section h2::before {
+      content: '';
+      width: clamp(7px, 1vw, 10px);
+      height: clamp(7px, 1vw, 10px);
+      background: var(--olive);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: clamp(0.4rem, 1vw, 0.65rem) 0;
+      border-bottom: 1px dashed rgba(90, 107, 47, 0.12);
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .item-name {
+      font-size: var(--item-name);
+      line-height: 1.35;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-name strong {
+      color: var(--olive-dark);
+      font-weight: 600;
+    }
+
+    .item-desc {
+      font-size: var(--item-desc);
+      color: #666;
+      margin-top: 0.18rem;
+      line-height: 1.35;
+    }
+
+    .item-price {
+      font-weight: 600;
+      color: var(--olive);
+      white-space: nowrap;
+      font-size: var(--price-size);
+      min-width: clamp(48px, 6vw, 70px);
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: clamp(1.2rem, 3vw, 2rem);
+      color: var(--olive-dark);
+      font-size: clamp(0.8rem, 1.4vw, 1rem);
+      opacity: 0.7;
+    }
+
+    /* ========== PHONE ========== */
+    @media (max-width: 480px) {
+      .menu-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .menu-section:hover {
+        transform: none;
+      }
+    }
+
+    /* ========== TABLET ========== */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .menu-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ========== DESKTOP ========== */
+    @media (min-width: 1024px) and (max-width: 1439px) {
+      .menu-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ========== LARGE / TV ========== */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+      .menu-container {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1500px;
+      }
+    }
+
+    @media (min-width: 1920px) {
+      :root {
+        --logo-circle: 100px;
+        --title-size: 3.4rem;
+        --section-title: 1.45rem;
+        --item-name: 1.25rem;
+        --item-desc: 1.05rem;
+        --price-size: 1.3rem;
+        --card-padding: 2.2rem;
+        --section-gap: 2.4rem;
+      }
+      .menu-container {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1800px;
+      }
+      body { font-size: 18px; }
+    }
+
+    @media (min-width: 2560px) {
+      :root {
+        --logo-circle: 120px;
+        --title-size: 4rem;
+        --section-title: 1.7rem;
+        --item-name: 1.4rem;
+        --item-desc: 1.15rem;
+        --price-size: 1.5rem;
+      }
+      .menu-container {
+        max-width: 2200px;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-group {
+        animation: none;
+      }
+      .menu-section {
+        transition: none;
+      }
+    }
+
+    @media print {
+      header { position: static; box-shadow: none; }
+      .menu-section { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header – logo + name float in from the left -->
+  <header>
+    <div class="logo-group">
+      <div class="logo-circle">
+        <img src="kiwi.jpg" alt="KiWi'S Logo">
+      </div>
+      <div class="logo-wordmark">KiWi'S</div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Меню</h1>
+  </div>
+
+  <!-- Menu -->
+  <div class="menu-container">
+
+    <!-- Coffee -->
+    <section class="menu-section">
+      <h2>Coffee and Classics</h2>
+      <div class="item">
+        <div class="item-name">Кафе</div>
+        <div class="item-price">2,20 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Кафе с мляко</div>
+        <div class="item-price">2,50 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Капучино</div>
+        <div class="item-price">3,00 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Фрапе</div>
+        <div class="item-price">3,20 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Студено LATE</div>
+        <div class="item-price">3,50 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Горещ шоколад</div>
+        <div class="item-price">4,00 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Лимонада</div>
+        <div class="item-price">3,80 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Фреш</div>
+        <div class="item-price">3,50 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">ESPRESSO TONIK</div>
+        <div class="item-price">4,00 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Чай</div>
+        <div class="item-price">3,00 €</div>
+      </div>
+    </section>
+
+    <!-- Cloud Foam -->
+    <section class="menu-section">
+      <h2>Cloud Foam & Matcha</h2>
+      <div class="item">
+        <div class="item-name">MATCHA LATE</div>
+        <div class="item-price">4,50 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Карамел CLOUD FOAM</div>
+        <div class="item-price">5 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Манго и кокос CLOUD FOAM</div>
+        <div class="item-price">5 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Тирамису CLOUD FOAM</div>
+        <div class="item-price">5 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Ягода CLOUD FOAM</div>
+        <div class="item-price">5 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Боровинка CLOUD FOAM</div>
+        <div class="item-price">5 €</div>
+      </div>
+    </section>
+
+    <!-- Protein Sandwiches -->
+    <section class="menu-section">
+      <h2>Протеинови Сандвичи</h2>
+      <div class="item">
+        <div class="item-name">
+          <strong>Пилешки Бриош</strong>
+          <div class="item-desc">350 гр. • Пилешко филе, протеинов бриош, яйце, котидж крем, зелена салата и чедър, домат</div>
+        </div>
+        <div class="item-price">6 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Свински Бриош</strong>
+          <div class="item-desc">360 гр. • Свински карета, протеинов бриош, яйце, пушена майонеза, краставички, чедър, зелена салата и домат</div>
+        </div>
+        <div class="item-price">6,50 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Телешки Бриош</strong>
+          <div class="item-desc">370 гр. • Black Angus кюфте, протеинов бриош, яйце, чедър, карамелизиран лук, кисели краставички, маруля и домат</div>
+        </div>
+        <div class="item-price">7,50 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Пуешки Бриош</strong>
+          <div class="item-desc">360 гр. • Пуешко филе, протеинов Бриош, домат, билков скир сос, хрупкав лук, чедър и маринован лук</div>
+        </div>
+        <div class="item-price">6 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Двойна сьомга Бриош</strong>
+          <div class="item-desc">370 гр. • Печена и пушена сьомга, рола крема сирене с билки и лимон, авокадо, каперси, маруля и маринован лук</div>
+        </div>
+        <div class="item-price">7,50 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Вегетариански Бриош</strong>
+          <div class="item-desc">350 гр. • Протеинов бриош, омлет, авокадо, пушена майонеза, домат, зелена салата</div>
+        </div>
+        <div class="item-price">6 €</div>
+      </div>
+    </section>
+
+    <!-- Salads -->
+    <section class="menu-section">
+      <h2>Салати</h2>
+      <div class="item">
+        <div class="item-name">
+          <strong>Цезар с пиле</strong>
+          <div class="item-desc">320 гр. • Протеинов дресинг, крутони и пармезан</div>
+        </div>
+        <div class="item-price">6 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Салата печена сьомга</strong>
+          <div class="item-desc">320 гр. • Зелена, билков скир дресинг, лимон, царевица, маслини и чушка</div>
+        </div>
+        <div class="item-price">7 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Вегетарианска салата</strong>
+          <div class="item-desc">310 гр. • Зелена салата, варени яйца, червен боб, царевица, чушка, чери домат и млечен дресинг</div>
+        </div>
+        <div class="item-price">5,50 €</div>
+      </div>
+    </section>
+
+    <!-- Protein Portions -->
+    <section class="menu-section">
+      <h2>Протеинови Порции</h2>
+      <div class="item">
+        <div class="item-name">
+          <strong>Пилешка порция</strong>
+          <div class="item-desc">470 гр. • Пилешко филе, басмати ориз, яйце, котидж крем, кисели краставички, зеленчуци</div>
+        </div>
+        <div class="item-price">10 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Свинска порция</strong>
+          <div class="item-desc">480 гр. • Свински карета, басмати ориз, яйце, пушена майонеза, зеленчуци</div>
+        </div>
+        <div class="item-price">10 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Телешка порция</strong>
+          <div class="item-desc">480 гр. • Black Angus телешко кюфте, басмати ориз, чедър сос, кисели краставички, карамелизиран лук и зеленчуци</div>
+        </div>
+        <div class="item-price">12 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Пуешка порция</strong>
+          <div class="item-desc">470 гр. • Пуешко филе, басмати ориз, билков скир сос, хрупкав лук, маринован лук и зеленчуци</div>
+        </div>
+        <div class="item-price">10 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Сьомга порция</strong>
+          <div class="item-desc">470 гр. • Печена сьомга, билков скир сос, лимон, авокадо, басмати ориз, маринован лук и зеленчуци</div>
+        </div>
+        <div class="item-price">12 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">
+          <strong>Вегетарианска порция</strong>
+          <div class="item-desc">450 гр. • Басмати ориз, билков скир сос, лимон, омлет, авокадо, зеленчуци</div>
+        </div>
+        <div class="item-price">9 €</div>
+      </div>
+    </section>
+
+    <!-- Desserts -->
+    <section class="menu-section">
+      <h2>Десерти в кен</h2>
+      <div class="item">
+        <div class="item-name">Орео – протеинов чийзкейк 250 g</div>
+        <div class="item-price">5 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Протеинов с бишкота и лешник 250 g</div>
+        <div class="item-price">5 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Карамел бисквит чийзкейк 250 g</div>
+        <div class="item-price">5 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Манго и кокос протеинов чийзкейк 250 g</div>
+        <div class="item-price">5 €</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Ягода и боровинка с чия, скир и протеин 250 g</div>
+        <div class="item-price">5 €</div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    KiWi'S &copy; 2025 • Protein powered
+  </footer>
+
+</body>
+</html>
